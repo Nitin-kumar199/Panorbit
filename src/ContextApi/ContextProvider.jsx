@@ -4,16 +4,13 @@ import { getProfile } from "../Api/api";
 
 export const AppContest = createContext();
 const ContextProvider = ({ children }) => {
-  // --------- profile show hide -------
   const [showProfile, setShowProfile] = useState(false);
 
-  // --------------------
   const [profileData, setProfileData] = useState([]);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  // ------------ Getting data from Api -------
   const getAllData = () => {
     setLoading(true);
     setError(false);
@@ -29,7 +26,6 @@ const ContextProvider = ({ children }) => {
       });
   };
 
-  // ------------ (fetching data with param id)---------
   const getFilterData = (id) => {
     getProfile()
       .then((res) => {

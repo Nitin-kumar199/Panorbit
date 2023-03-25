@@ -8,12 +8,10 @@ import { AppContest } from "../ContextApi/ContextProvider";
 import style from "../css/homepage.module.css";
 
 const HomePage = () => {
-  const { profileData, getFilterData, setShowProfile, showProfile } =
-    useContext(AppContest); // getting data from contest api
+  const { profileData, getFilterData, setShowProfile } = useContext(AppContest);
   const { id } = useParams();
   sessionStorage.setItem("id", id);
 
-  // ------------ (fetching data with param id)---------
   useEffect(() => {
     let ID = sessionStorage.getItem("id") || 1;
     getFilterData(ID);
@@ -22,9 +20,8 @@ const HomePage = () => {
   return (
     <div>
       <div className={style.HomeMain}>
-        {/* ------------ (Left navbar)---------- */}
         <LeftNav />
-        {/* ----------- (Right part)------------- */}
+
         {profileData &&
           profileData.map((el) => (
             <div
@@ -32,14 +29,13 @@ const HomePage = () => {
               className={style.profile_top}
               key={el.id}
             >
-              {/* ---------- top nav------- */}
               <div className={style.profile}>
                 <h2>Profile</h2>
                 <TopNav />
               </div>
 
               <hr />
-              {/* ------------- (bottom)------------- */}
+
               <div onClick={() => setShowProfile(false)}>
                 <ProfileBottom {...el} />
               </div>

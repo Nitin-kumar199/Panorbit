@@ -6,19 +6,17 @@ import { useContext } from "react";
 import { AppContest } from "../ContextApi/ContextProvider";
 
 const Chat = () => {
-  const { data, loading, error, getAllData } = useContext(AppContest); // getting data from contest api
+  const { data, loading, error, getAllData } = useContext(AppContest);
   const [hide, setHide] = useState(false);
 
   useEffect(() => {
     getAllData();
   }, []);
 
-  // -------- loading ---------
   if (loading) {
     return <h3 style={{ color: "teal" }}>Loading....</h3>;
   }
 
-  // --------- error ---------
   if (error) {
     return <h3 style={{ color: "red" }}>server error....</h3>;
   }
@@ -36,7 +34,6 @@ const Chat = () => {
       </div>
       {hide ? (
         <div className={style.profiles}>
-          {/* --------- Data maping ------ */}
           {data &&
             data.map((el) => (
               <div key={el.id}>
